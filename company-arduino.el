@@ -110,11 +110,16 @@ wherever you want to develop Arduino application.")
   "Append Arduino's include directoreis to ORIGINAL.
 If you set non-nil to ONLY-DIRS, the return value is appended
 `company-arduino-includes-dirs'  Otherwise, it appends `irony-arduino-includes-options'."
-  (if (not (string-match company-arduino-sketch-directory-regex default-directory))
+  (if (not (company-arduino-sketch-directory-p))
       original
     (if only-dirs
         (append original company-arduino-includes-dirs)
       (append original irony-arduino-includes-options))))
+
+;;;###autoload
+(defun company-arduino-sketch-directory-p ()
+  "Check whether current directory is in sketch directory or not."
+  (string-match company-arduino-sketch-directory-regex default-directory))
 
 ;;; For irony-mode
 (add-to-list 'irony-supported-major-modes 'arduino-mode)
