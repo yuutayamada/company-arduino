@@ -9,6 +9,12 @@ MELPA, package.el will install dependencies automatically when you install
 this package. Also, you need irony-mode's setting, so please follow
 the irony-mode's instruction (https://github.com/Sarcasm/irony-mode).
 
+## Installation
+This package can install from via [MELPA](http://melpa.org/#/).
+So if you already set up MELPA, you can install it by using:
+
+`M-x package-install RET company-arduino RET`
+
 ## Usage
 Set $ARDUINO_HOME environment variable as Arduino IDE's installed directory.  
 
