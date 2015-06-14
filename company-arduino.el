@@ -6,7 +6,7 @@
 ;; Keywords: convenience development company
 ;; Version: 0.1.0
 ;; URL: https://github.com/yuutayamada/company-arduino
-;; Package-Requires: ((emacs "24.1") (company "0.8.0") (irony "0.1.0") (cl-lib "0.5") (company-irony "0.1.0") (company-c-headers "20140930"))
+;; Package-Requires: ((emacs "24.1") (company "0.8.0") (irony "0.1.0") (cl-lib "0.5") (company-irony "0.1.0") (company-c-headers "20140930") (arduino-mode "1.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
