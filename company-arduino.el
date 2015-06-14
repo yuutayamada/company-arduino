@@ -61,6 +61,10 @@
 ;;     (let ((default '("/usr/include/" "/usr/local/include/")))
 ;;       (company-arduino-append-include-dirs default t)))
 ;;   (setq company-c-headers-path-system 'my-company-c-headers-get-system-path)
+;;   ;; If you are already using ‘company-irony’ and ‘company-c-headers’,
+;;   ;; you might have same setting. That case, you can omit below setting.
+;;   (add-to-list 'company-backends 'company-irony)
+;;   (add-to-list 'company-backends 'company-c-headers)
 ;;
 ;; Note:
 ;; This package's default configuration is set for Linux environment,
