@@ -32,6 +32,10 @@
 ;; this package. Also, you need irony-mode's setting, so please follow
 ;; the irony-mode's instruction (https://github.com/Sarcasm/irony-mode).
 ;;
+;; Although you may prepared Arduino environment, you need it as well to
+;; refer to Arduino's header files. You can download from Arduino's web site
+;; (http://www.arduino.cc/en/Main/Software)
+;;
 ;; Usage:
 ;; Set $ARDUINO_HOME environment variable as Arduino IDE's installed directory.
 ;; (i.e., export ARDUINO_HOME=$HOME/share/devkit/arduino-1.6.3 on zsh)
