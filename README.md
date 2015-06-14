@@ -45,6 +45,9 @@ Then put following configurations to your .emacs or somewhere.
   (let ((default '("/usr/include/" "/usr/local/include/")))
     (company-arduino-append-include-dirs default t)))
 (setq company-c-headers-path-system 'my-company-c-headers-get-system-path)
+  
+;; Activate irony-mode on arudino-mode
+(add-hook 'arduino-mode-hook 'irony-mode)
 ```
 
 If you are already using `company-irony` and `company-c-headers`,
