@@ -122,7 +122,8 @@ wherever you want to develop Arduino application.")
   "Append Arduino's include directoreis to ORIGINAL.
 If you set non-nil to ONLY-DIRS, the return value is appended
 `company-arduino-includes-dirs'  Otherwise, it appends `irony-arduino-includes-options'."
-  (if (not (company-arduino-sketch-directory-p))
+  (if (not (or (company-arduino-sketch-directory-p)
+               (eq 'arduino-mode major-mode)))
       original
     (if only-dirs
         (append original company-arduino-includes-dirs)
