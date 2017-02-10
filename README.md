@@ -46,7 +46,7 @@ Then put following configurations to your .emacs or somewhere.
     (company-arduino-append-include-dirs default t)))
 (setq company-c-headers-path-system 'my-company-c-headers-get-system-path)
   
-;; Activate irony-mode on arudino-mode
+;; Activate irony-mode on arduino-mode
 (add-hook 'arduino-mode-hook 'irony-mode)
 ```
 
