@@ -89,6 +89,7 @@
   (format "^%s" (file-truename (cl-case system-type
                                  (darwin "~/Documents/Arduino")
                                  ((ms-dos windows-nt) "My Documents\\Arduino") ; <- please help
+                                 (gnu/linux "/usr/share/arduino")
                                  (t "~/Arduino"))))
   "Regex to distinguish `default-directory' is inside of sketch directory.
 If you are Mac or Windows user, please refer to
@@ -99,16 +100,33 @@ wherever you want to develop Arduino application.")
 (defvar company-arduino-home (file-truename (or (getenv "ARDUINO_HOME") ""))
   "Installed directory of Arduino IDE.  Default value is $ARDUINO_HOME.")
 
-(defvar company-arduino-header (format "%s%s" company-arduino-home "/hardware/arduino/avr/cores/arduino/Arduino.h")
+(defvar company-arduino-header
+  (if (file-exists-p (format "%s%s" company-arduino-home
+                             "/hardware/arduino/avr/cores/arduino/Arduino.h"))
+      (format "%s%s" company-arduino-home
+              "/hardware/arduino/avr/cores/arduino/Arduino.h")
+    ;; for Arch Linux
+    (format "%s%s" company-arduino-home
+            "/hardware/archlinux-arduino/avr/cores/arduino/Arduino.h"))
   "Place of Arduino.h, which Arduino IDE includes by default.")
 
 (defvar company-arduino-includes-dirs
-  (cl-loop with dirs = '("/hardware/arduino/avr/cores/arduino/"
-                         "/hardware/tools/avr/include/"
-                         "/hardware/arduino/avr/libraries/")
-           for include-dir in dirs
-           collect (format "%s%s" company-arduino-home include-dir) into include-dirs
-           finally return include-dirs)
+  (delq
+   nil
+   (mapcar
+    (lambda (x)
+      (when (file-exists-p x) x))
+    (cl-loop with dirs = '("/hardware/arduino/avr/cores/arduino/"
+                           "/hardware/tools/avr/include/"
+                           "/hardware/arduino/avr/libraries/"
+                           ;; for Arch Linux
+                           "/hardware/archlinux-arduino/avr/cores/arduino/"
+                           "/hardware/archlinux-arduino/avr/firmwares/"
+                           "/hardware/archlinux-arduino/avr/libraries/"
+                           "/hardware/archlinux-arduino/avr/variants/")
+             for include-dir in dirs
+             collect (format "%s%s" company-arduino-home include-dir) into include-dirs
+             finally return include-dirs)))
   "Arduino's specific include directories.")
 
 (defvar irony-arduino-includes-options
