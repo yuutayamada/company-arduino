@@ -89,6 +89,7 @@
   (format "^%s" (file-truename (cl-case system-type
                                  (darwin "~/Documents/Arduino")
                                  ((ms-dos windows-nt) "My Documents\\Arduino") ; <- please help
+                                 (gnu/linux "/usr/share/arduino")
                                  (t "~/Arduino"))))
   "Regex to distinguish `default-directory' is inside of sketch directory.
 If you are Mac or Windows user, please refer to
