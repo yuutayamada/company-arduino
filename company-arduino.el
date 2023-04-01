@@ -102,12 +102,14 @@ wherever you want to develop Arduino application.")
 (defvar company-arduino-header (format "%s%s" company-arduino-home "/cores/arduino/Arduino.h")
   "Place of Arduino.h, which Arduino IDE includes by default.")
 
+(defvar company-arduino-avr-gcc-headers (file-truename (or (getenv "ARDUINO_AVR_GCC_HEADERS") "")))
+
 (defvar company-arduino-includes-dirs
-  (cl-loop with dirs = '("/cores/arduino/"
+  (append (cl-loop with dirs = '("/cores/arduino/"
                          "/libraries/")
            for include-dir in dirs
            collect (format "%s%s" company-arduino-home include-dir) into include-dirs
-           finally return include-dirs)
+           finally return include-dirs) company-arduino-avr-gcc-headers)
   "Arduino's specific include directories.")
 
 (defvar irony-arduino-includes-options
